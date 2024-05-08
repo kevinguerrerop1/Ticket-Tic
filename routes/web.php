@@ -2,8 +2,12 @@
 
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +27,12 @@ use App\Http\Controllers\TicketsController;
 Route::resource('/servicios', ServiciosController::class);
 Route::resource('/tickets', TicketsController::class);
 
+Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
+Route::get('/tickets/viewactivos', [TicketsController::class,'viewactivos']);
+
+
+Route::resource('/users', UserController::class);
+
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');

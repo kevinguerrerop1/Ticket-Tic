@@ -34,10 +34,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('home')}}">Tickets</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link active" aria-current="page" href="{{('/tickets/viewactivos')}}">Tickets</a>
+                            </li>
+                        <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('users.index')}}">Usuarios</a>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="#">Pricing</a>

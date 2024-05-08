@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tickets;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class TicketsController extends Controller
@@ -53,8 +55,8 @@ class TicketsController extends Controller
      */
     public function show($id)
     {
-        //$tickets = Tickets::findorfind($id)->get();
-        //return view('Ticket.show', compact('tickets'));
+        $tickets = Tickets::findOrFail($id);
+        return view('Tickets.show');
     }
 
     /**
@@ -89,5 +91,27 @@ class TicketsController extends Controller
     public function destroy(Tickets $tickets)
     {
         //
+    }
+
+    public function asignar($id){
+        $ticket = Tickets::findOrFail($id);
+        $user = Auth::id();
+        $ticket->userid = $user;
+        $ticket->ESTADO = "Asignado";
+        $ticket->save();
+        return redirect('tickets');
+        //->with('Mensaje',$funcionario->nombre.' Dado de baja con Exito.')
+    }
+
+    public function viewactivos(){
+        $tickets = Tickets::where('ESTADO','=','Asignado');
+        return view('Tickets.activos', compact('tickets'));
+    }
+
+    public function cerrar($id){
+        $ticket = Tickets::findOrFail($id);
+        $ticket->ESTADO = "Cerrado";
+        $ticket->save();
+        return redirect('tickets');
     }
 }
