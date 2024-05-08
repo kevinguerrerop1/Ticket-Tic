@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container mt-4">
-    <a href="{{ route('servicios.create') }}"class="btn btn-success">Crear nuevo servicio</a>
+    <a href="{{ route('register') }}"class="btn btn-success">Crear nuevo Usuario</a>
 <table class="table table-striped table-hover" id="myTable">
     <thead>
         <tr>

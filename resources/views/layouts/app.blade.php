@@ -37,8 +37,8 @@
                         <a class="nav-link active" aria-current="page" href="{{ route('home')}}">Tickets</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{('/tickets/viewactivos')}}">Tickets</a>
-                            </li>
+                            <a class="nav-link active" aria-current="page" href="{{('/tickets/viewactivos')}}">Tickets Activos</a>
+                        </li>
                         <li class="nav-item">
                         <a class="nav-link active" href="{{ route('users.index')}}">Usuarios</a>
                         </li>

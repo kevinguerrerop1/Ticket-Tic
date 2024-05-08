@@ -20,6 +20,11 @@ class TicketsController extends Controller
         return view('Tickets.index', $datos);
     }
 
+    public function viewactivos(){
+        //$tickets = Tickets::where('ESTADO','=','Asignado');
+        //return view('Tickets.activos', compact('tickets'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -53,10 +58,11 @@ class TicketsController extends Controller
      * @param  \App\Models\Tickets  $tickets
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tickets $tickets)
     {
-        $tickets = Tickets::findOrFail($id);
-        return view('Tickets.show');
+        //$tickets = Tickets::findOrFail($id);
+        //return view('Tickets.show');
+        return view('Tickets.show',['tickets'=> $tickets]);
     }
 
     /**
@@ -103,10 +109,7 @@ class TicketsController extends Controller
         //->with('Mensaje',$funcionario->nombre.' Dado de baja con Exito.')
     }
 
-    public function viewactivos(){
-        $tickets = Tickets::where('ESTADO','=','Asignado');
-        return view('Tickets.activos', compact('tickets'));
-    }
+
 
     public function cerrar($id){
         $ticket = Tickets::findOrFail($id);

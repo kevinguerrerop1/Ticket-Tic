@@ -28,7 +28,7 @@ Route::resource('/servicios', ServiciosController::class);
 Route::resource('/tickets', TicketsController::class);
 
 Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
-Route::get('/tickets/viewactivos', [TicketsController::class,'viewactivos']);
+//Route::get('/tickets/viewactivos', [TicketsController::class,'viewactivos']);
 
 
 Route::resource('/users', UserController::class);
