@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\ServiciosController;
 use App\Http\Controllers\TicketsController;
+use App\Http\Controllers\DetalleTicketsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 
@@ -25,10 +26,14 @@ use App\Http\Controllers\HomeController;
 });*/
 
 Route::resource('/servicios', ServiciosController::class);
-Route::resource('/tickets', TicketsController::class);
-
+Route::resource('tickets', TicketsController::class);
 Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
-//Route::get('/tickets/viewactivos', [TicketsController::class,'viewactivos']);
+
+Route::resource('/detalles', DetalleTicketsController::class);
+Route::get('detalles/{id}/datos', [DetalleTicketsController::class,'datos']);
+
+
+Route::get('/viewactivos', [TicketsController::class,'viewactivos']);
 
 
 Route::resource('/users', UserController::class);

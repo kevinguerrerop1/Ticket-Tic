@@ -38,7 +38,7 @@
                         <td>{{ $ticket->prioridad }}</td>
                         <td>{{ \Carbon\Carbon::parse($ticket->created_at)->format('d-m-Y H:i') }}</td>
                         <td><a onclick="return confirm('Se desea asignar a este Ticket?')" href="{{url('/tickets/'.$ticket->id.'/asignar')}}" class="btn btn-primary">Asignar</a>
-                            <a class="btn btn-info"  href="{{ route('tickets.show', $ticket->id) }}">Info</a></td>
+                            <a class="btn btn-info"  href="{{url('/detalles/'.$ticket->id.'/datos')}}">Detalle</a></td>
                     </tr>
                     @endforeach
                 </tbody>

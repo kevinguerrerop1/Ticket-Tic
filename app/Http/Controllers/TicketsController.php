@@ -21,8 +21,8 @@ class TicketsController extends Controller
     }
 
     public function viewactivos(){
-        //$tickets = Tickets::where('ESTADO','=','Asignado');
-        //return view('Tickets.activos', compact('tickets'));
+        $tickets = Tickets::where('ESTADO','=','Asignado');
+        return view('Tickets.activos', compact('tickets'));
     }
 
     /**
@@ -62,7 +62,7 @@ class TicketsController extends Controller
     {
         //$tickets = Tickets::findOrFail($id);
         //return view('Tickets.show');
-        return view('Tickets.show',['tickets'=> $tickets]);
+        //return view('Tickets.show',['tickets'=> $tickets]);
     }
 
     /**
