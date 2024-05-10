@@ -4,10 +4,11 @@
 <div class="container">
     <form action="{{route('detalles.store')}}" class="form-horizontal" method="POST" enctype="multipart/form-data">
         @csrf
-        <div class="mt-4">
+        <div class="mt-4" >
             <label for="">Nro Ticket:</label>
             @foreach ($tickets as $ticket)
-                <input type="text" name="ID_TICKET" id="ID_TICKET" placeholder="nombre" class="form-control" value="{{$ticket->id}}">
+                <h3>{{ $ticket->id }}</h3>
+                <input type="text" name="ID_TICKET" id="ID_TICKET" placeholder="nombre" class="form-control" value="{{$ticket->id}}" style="display:none;">
             @endforeach
         </div>
 
@@ -35,7 +36,7 @@
             @foreach ($dticket as $dt)
                 <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
                 <label for="exampleFormControlTextarea1" class="form-label">Fecha: {{ \Carbon\Carbon::parse($dt->created_at)->format('d-m-Y H:i') }}</label>
-                <textarea class="form-control" id="" name="" rows="3" disabled>{{ $dt->ticketcomentario }}</textarea>
+                <textarea class="form-control" id="" name="" rows="3" disabled readonly>{{ $dt->ticketcomentario }}</textarea>
             @endforeach
         </div>
         <div class="mt-4">
