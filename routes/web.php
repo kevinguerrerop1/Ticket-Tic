@@ -29,7 +29,7 @@ Route::resource('/servicios', ServiciosController::class);
 Route::resource('tickets', TicketsController::class);
 Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
 
-Route::resource('/detalles', DetalleTicketsController::class);
+Route::resource('detalles', DetalleTicketsController::class);
 Route::get('detalles/{id}/datos', [DetalleTicketsController::class,'datos']);
 
 

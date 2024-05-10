@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DetalleTickets;
 use App\Models\Tickets;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -26,11 +27,9 @@ class DetalleTicketsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Tickets $id)
+    public function create()
     {
-        $ticket = Tickets::findOrFail($id);
-        dd($ticket);
-        //return view('DetalleTickets.create', compact('tickets'));
+
     }
 
     /**
@@ -41,7 +40,13 @@ class DetalleTicketsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $dticket = new DetalleTickets();
+        $dticket->ID_TICKET = $request->ID_TICKET;
+        $dticket->TICKETCOMENTARIO = $request->TICKETCOMENTARIO;
+        //dd($dticket);
+        $dticket->save();
+        return redirect('tickets');
     }
 
     /**
@@ -52,7 +57,7 @@ class DetalleTicketsController extends Controller
      */
     public function show(DetalleTickets $detalleTickets)
     {
-        //
+
     }
 
     /**
@@ -89,13 +94,24 @@ class DetalleTicketsController extends Controller
         //
     }
 
-    public function datos($id){
-        $ticket = Tickets::findOrFail($id);
-        //$user = Auth::id();
-        $user = DB::table('users')->where('id','=',$id)->first();
-        //dd($user);
+    public function datos(Tickets $id){
+        $users = User::get()->where('id', $id->userid);
+        $tickets = Tickets::get()->where('id', $id->id);
+        $dticket= DetalleTickets::get()->where('id_ticket', $id->id);
 
-        return view ('detalleTickets.index', compact('ticket', 'user'));
+        //dd($tickets, $users, $dticket);
+        return view ('detalleTickets.index', compact('tickets', 'users', 'dticket'));
+
+
+
+
+        //$ticket = Tickets::all()->where('id', $id)->first();
+        //dd($ticket);
+        //$user = Auth::id();
+        //$users = User::all();
+        //dd($users);
+
+        //return view ('detalleTickets.index', compact('ticket', 'users'));
         //->with('Mensaje',$funcionario->nombre.' Dado de baja con Exito.')
     }
 }
