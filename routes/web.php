@@ -25,17 +25,20 @@ use App\Http\Controllers\HomeController;
     return view('welcome');
 });*/
 
+//Servicios
 Route::resource('/servicios', ServiciosController::class);
+
+//Tickets
 Route::resource('tickets', TicketsController::class);
 Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
+Route::get('/viewactivos', [TicketsController::class,'viewactivos']);
+Route::get('/viewxusu', [TicketsController::class,'viewxusu']);
 
+//Detalles Ticket
 Route::resource('detalles', DetalleTicketsController::class);
 Route::get('detalles/{id}/datos', [DetalleTicketsController::class,'datos']);
 
-
-Route::get('/viewactivos', [TicketsController::class,'viewactivos']);
-
-
+//Usuarios
 Route::resource('/users', UserController::class);
 
 Auth::routes();

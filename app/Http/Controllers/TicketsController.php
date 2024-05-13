@@ -37,6 +37,15 @@ class TicketsController extends Controller
         return view('Tickets.asignados', compact('tickets'));
     }
 
+    public function viewxusu(){
+        $tickets = DB::table('tickets')
+            ->select('tickets.id','titulo','descripcion','ESTADO','prioridad','tickets.created_at','userid','name')
+            ->leftjoin('users', 'users.id','=', 'tickets.userid')
+            ->where('userid',Auth::id())
+            ->get();
+        return view('Tickets.ticketsxusu', compact('tickets'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
