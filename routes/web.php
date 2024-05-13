@@ -31,7 +31,7 @@ Route::resource('/servicios', ServiciosController::class);
 //Tickets
 Route::resource('tickets', TicketsController::class);
 Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
-Route::get('/viewactivos', [TicketsController::class,'viewactivos']);
+Route::get('/viewactivos', [TicketsController::class,'viewactivos'])->middleware('auth');
 Route::get('/viewxusu', [TicketsController::class,'viewxusu']);
 
 //Detalles Ticket
