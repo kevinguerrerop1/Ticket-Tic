@@ -6,6 +6,7 @@ use App\Models\Tickets;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TicketsController extends Controller
 {
@@ -16,13 +17,24 @@ class TicketsController extends Controller
      */
     public function index()
     {
-        $datos['tickets'] = Tickets::all();
+        $datos['tickets'] = DB::table('tickets')
+                    ->select('*')
+                    ->join('users', 'users.id', '=', 'tickets.userid')
+                    ->get();
+
+        //dd($leagues);
+        //$datos['tickets'] = Tickets::all();
         return view('Tickets.index', $datos);
     }
 
     public function viewactivos(){
-        $tickets = Tickets::where('ESTADO','=','Asignado');
+        $tickets = Tickets::where('ESTADO','Abierto')->get();
         return view('Tickets.activos', compact('tickets'));
+    }
+
+    public function viewasignados(){
+        $tickets = Tickets::where('ESTADO','Asignado')->get();
+        return view('Tickets.asignados', compact('tickets'));
     }
 
     /**

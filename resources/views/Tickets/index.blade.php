@@ -34,7 +34,7 @@
                         <td>{{ $ticket->titulo }}</td>
                         <td>{{ $ticket->descripcion }}</td>
                         <td>{{ $ticket->estado }}</td>
-                        <td>{{ $ticket->userid }}</td>
+                        <td>{{ $ticket->name }}</td>
                         <td>{{ $ticket->prioridad }}</td>
                         <td>{{ \Carbon\Carbon::parse($ticket->created_at)->format('d-m-Y H:i') }}</td>
                         <td><a onclick="return confirm('Se desea asignar a este Ticket?')" href="{{url('/tickets/'.$ticket->id.'/asignar')}}" class="btn btn-primary">Asignar</a>
