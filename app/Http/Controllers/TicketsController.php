@@ -18,11 +18,11 @@ class TicketsController extends Controller
     public function index()
     {
         $datos['tickets'] = DB::table('tickets')
-                    ->select('*')
-                    ->join('users', 'users.id', '=', 'tickets.userid')
-                    ->get();
+            ->select('tickets.id','titulo','descripcion','ESTADO','prioridad','tickets.created_at','userid','name')
+            ->leftjoin('users', 'users.id','=', 'tickets.userid')
+            ->get();
 
-        //dd($leagues);
+        //dd($datos);
         //$datos['tickets'] = Tickets::all();
         return view('Tickets.index', $datos);
     }

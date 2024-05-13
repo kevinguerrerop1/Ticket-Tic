@@ -2,7 +2,7 @@
 @section('content')
     <div class="container mt-4">
         <a href="{{ route('tickets.create') }}"class="btn btn-success">Generar Ticket</a>
-        <table class="table table-striped" id="myTable">
+        <table class="table table-striped" id="dataTable">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -34,7 +34,7 @@
                         <td>{{ $ticket->titulo }}</td>
                         <td>{{ $ticket->descripcion }}</td>
                         <td>{{ $ticket->estado }}</td>
-                        <td>{{ $ticket->name }}</td>
+                        <td>{{ $ticket->name ?? 'NO ASIGNADO' }}</td>
                         <td>{{ $ticket->prioridad }}</td>
                         <td>{{ \Carbon\Carbon::parse($ticket->created_at)->format('d-m-Y H:i') }}</td>
                         <td><a onclick="return confirm('Se desea asignar a este Ticket?')" href="{{url('/tickets/'.$ticket->id.'/asignar')}}" class="btn btn-primary">Asignar</a>
