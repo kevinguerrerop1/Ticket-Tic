@@ -29,14 +29,20 @@ use App\Http\Controllers\HomeController;
 Route::resource('/servicios', ServiciosController::class);
 
 //Tickets
-Route::resource('tickets', TicketsController::class);
-Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
-Route::get('/viewactivos', [TicketsController::class,'viewactivos'])->middleware('auth');
-Route::get('/viewxusu', [TicketsController::class,'viewxusu']);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('tickets', TicketsController::class);
+    Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
+    Route::get('/viewactivos', [TicketsController::class,'viewactivos'])->middleware('auth');
+    Route::get('/viewxusu', [TicketsController::class,'viewxusu']);
+    Route::get('tickets/{id}/cerrar', [TicketsController::class,'cerrar']);
+});
 
 //Detalles Ticket
-Route::resource('detalles', DetalleTicketsController::class);
-Route::get('detalles/{id}/datos', [DetalleTicketsController::class,'datos']);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('detalles', DetalleTicketsController::class);
+    Route::get('detalles/{id}/datos', [DetalleTicketsController::class,'datos']);
+});
+
 
 //Usuarios
 Route::resource('/users', UserController::class);
