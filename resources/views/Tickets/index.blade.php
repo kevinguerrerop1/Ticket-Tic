@@ -30,12 +30,20 @@
                 <tbody>
                     @foreach($tickets as $ticket)
                     <tr>
-                        <td>{{ $ticket->id }}</td>
+                        <td class="">{{ $ticket->id }}</td>
                         <td>{{ $ticket->titulo }}</td>
                         <td>{{ $ticket->descripcion }}</td>
                         <td>{{ $ticket->estado }}</td>
                         <td>{{ $ticket->name ?? 'NO ASIGNADO' }}</td>
-                        <td>{{ $ticket->prioridad }}</td>
+                        <td>
+                            @if ($ticket->prioridad == "Baja")
+                                <span style="color:green;">{{$ticket->prioridad}}</span>
+                            @elseif ($ticket->prioridad == "Media")
+                                <span style="color:orange;">{{$ticket->prioridad}}</span>
+                            @elseif ($ticket->prioridad == "Alta")
+                                <span style="color:red;">{{$ticket->prioridad}}</span>
+                            @endif
+                        </td>
                         <td>{{ \Carbon\Carbon::parse($ticket->created_at)->format('d-m-Y H:i') }}</td>
                         <td><a onclick="return confirm('Se desea asignar a este Ticket?')" href="{{url('/tickets/'.$ticket->id.'/asignar')}}" class="btn btn-primary">Asignar</a>
                             <a class="btn btn-info"  href="{{url('/detalles/'.$ticket->id.'/datos')}}">Detalle</a>
