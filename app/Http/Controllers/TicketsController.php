@@ -130,8 +130,6 @@ class TicketsController extends Controller
         //->with('Mensaje',$funcionario->nombre.' Dado de baja con Exito.')
     }
 
-
-
     public function cerrar($id){
         $ticket = Tickets::findOrFail($id);
         $ticket->ESTADO = "Cerrado";

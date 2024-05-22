@@ -47,6 +47,9 @@
             <input type="submit" class="btn btn-success" value="Responder Ticket">
         </div>
     </form>
+    <div class="mt-4">
+        <a onclick="return confirm('Se desea Cerrar este Ticket?')" href="{{url('/tickets/'.$ticket->id.'/cerrar')}}" class="btn btn-danger">Cerrar</a>
+    </div>
 </div>
 
 
