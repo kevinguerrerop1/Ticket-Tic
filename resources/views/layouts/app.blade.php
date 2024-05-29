@@ -106,6 +106,8 @@
     <script>
         $(document).ready(function() {
             $('#example').DataTable({
+                pageLength : 10,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
                 language: {
                 url: 'https://cdn.datatables.net/plug-ins/2.0.7/i18n/es-MX.json',
             },
