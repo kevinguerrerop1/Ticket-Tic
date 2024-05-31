@@ -37,11 +37,11 @@
                         <td>{{ $ticket->name ?? 'NO ASIGNADO' }}</td>
                         <td>
                             @if ($ticket->prioridad == "Baja")
-                                <span style="color:green;">{{$ticket->prioridad}}</span>
+                                <span style="background-color:greenyellow; color:black">{{$ticket->prioridad}}</span>
                             @elseif ($ticket->prioridad == "Media")
-                                <span style="color:orange;">{{$ticket->prioridad}}</span>
+                                <span style="background-color:orange; color:black">{{$ticket->prioridad}}</span>
                             @elseif ($ticket->prioridad == "Alta")
-                                <span style="color:red;">{{$ticket->prioridad}}</span>
+                                <span style="background-color:red; color:black;">{{$ticket->prioridad}}</span>
                             @endif
                         </td>
                         <td>{{ \Carbon\Carbon::parse($ticket->created_at)->format('d-m-Y H:i') }}</td>
