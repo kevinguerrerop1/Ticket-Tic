@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/styles/overlayscrollbars.min.css" integrity="sha256-dSokZseQNT08wYEWiz5iLI8QPlKxG+TswNRD8k35cpg=" crossorigin="anonymous"><!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Third Party Plugin(Bootstrap Icons)-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" integrity="sha256-Qsx5lrStHZyR9REqhUF8iQt73X06c8LGIUPzpOhwRrI=" crossorigin="anonymous"><!--end::Third Party Plugin(Bootstrap Icons)--><!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="vendor/Adminlte/css/adminlte.min.css"><!--end::Required Plugin(AdminLTE)-->
-</head> <!--end::Head--> <!--begin::Body-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
 
 <body class="layout-fixed sidebar-expand-lg sidebar-mini bg-body-tertiary"> <!--begin::App Wrapper-->
     <div class="app-wrapper"> <!--begin::Header-->
@@ -58,6 +59,26 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>
+                        <!-- Tickets Menu -->
+                        <li class="nav-item"> <a href="#" class="nav-link"><i class="bi bi-list-ol"></i>
+                            <p>
+                                Tickets
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"> <a href="{{ route('tickets.index') }}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Todos</p>
+                                    </a> </li>
+                                <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Cerrados</p>
+                                    </a> </li>
+                                <li class="nav-item"> <a href="{{('/tickets/viewactivos')}}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Activos</p>
+                                    </a> </li>
+                            </ul>
+                        </li>
+                        <!-- End Tickets Menu -->
                     </ul>
                 </nav>
             </div>
@@ -86,15 +107,16 @@
                         <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 1-->
                             <div class="small-box text-bg-primary">
                                 <div class="inner">
-                                    <h3>150</h3>
-                                    <p>New Orders</p>
+                                    <h3>{{ $total }}</h3>
+                                    <p>Total Tickets</p>
                                 </div> <svg class="small-box-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                    <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z"></path>
+                                    <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                                    <path d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5m0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"/>
                                 </svg> <a href="#" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover">
-                                    More info <i class="bi bi-link-45deg"></i> </a>
-                            </div> <!--end::Small Box Widget 1-->
-                        </div> <!--end::Col-->
-                        <div class="col-lg-3 col-6"> <!--begin::Small Box Widget 2-->
+                                    Ver Tickets <i class="bi bi-link-45deg"></i> </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-6">
                             <div class="small-box text-bg-success">
                                 <div class="inner">
                                     <h3>53<sup class="fs-5">%</sup></h3>
@@ -128,21 +150,33 @@
                                     More info <i class="bi bi-link-45deg"></i> </a>
                             </div> <!--end::Small Box Widget 4-->
                         </div> <!--end::Col-->
-                    </div> <!--end::Row--> <!--begin::Row-->
-                    <div class="row"> <!-- Start col -->
+                    </div>
+                    <div class="row">
                         <div class="col-lg-7 connectedSortable">
+                            <!-- Grafico lineas -->
                             <div class="card mb-4">
                                 <div class="card-header">
-                                    <h3 class="card-title">Sales Value</h3>
+                                    <h3 class="card-title">Total de Tickets por Mes</h3>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="myChart"></canvas>
                                 </div>
                             </div>
+                            <!-- Grafico lineas -->
                         </div>
-                    </div> <!-- /.row (main row) -->
-                </div> <!--end::Container-->
-            </div> <!--end::App Content-->
+                        <div class="col-lg-5 connectedSortable">
+                            <div class="card ">
+                                <div class="card-header">
+                                    <h3 class="card-title">Tickets por Funcionario</h3>
+                                </div>
+                                <div class="card-body">
+                                    <canvas id="doughnutChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div> <!--end::App Wrapper--> <!--begin::Script--> <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.3.0/browser/overlayscrollbars.browser.es6.min.js" integrity="sha256-H2VM7BKda+v2Z4+DRy69uknwxjyDRhszjXFhsL4gD3w=" crossorigin="anonymous"></script> <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
@@ -150,12 +184,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha256-YMa+wAM6QkVyz999odX7lPRxkoYAan8suedu4k2Zur8=" crossorigin="anonymous"></script> <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="vendor/Adminlte/js/adminlte.js"></script> <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
 
-    <!--Script Charts-->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--Script Line Charts-->
+
 
     <script>
-        const ctx = document.getElementById('myChart');
 
+        //Line Chart
+        const ctx = document.getElementById('myChart');
         new Chart(ctx, {
             type: 'line',
         data: {
@@ -184,8 +219,34 @@
             }
         }
         });
-    </script>
 
+        //Doughnut Chart
+        var ctx1 = document.getElementById('doughnutChart').getContext('2d');
+        var myCharttorta = new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: {!! json_encode($funs) !!},
+                datasets: [{
+                    data: {!! json_encode($tktCount) !!},
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(255, 206, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+        });
+    </script>
 
     <script>
         const SELECTOR_SIDEBAR_WRAPPER = ".sidebar-wrapper";

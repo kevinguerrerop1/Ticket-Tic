@@ -9,6 +9,7 @@ use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\DetalleTicketsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ Route::resource('/servicios', ServiciosController::class);
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('tickets', TicketsController::class);
     Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
-    Route::get('/viewactivos', [TicketsController::class,'viewactivos'])->middleware('auth');
+    Route::get('/viewactivos', [TicketsController::class,'viewactivos']);
     Route::get('/viewxusu', [TicketsController::class,'viewxusu']);
     Route::get('tickets/{id}/cerrar', [TicketsController::class,'cerrar']);
 });
@@ -41,6 +42,10 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('detalles', DetalleTicketsController::class);
     Route::get('detalles/{id}/datos', [DetalleTicketsController::class,'datos']);
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('dashboard', AdminController::class);
 });
 
 

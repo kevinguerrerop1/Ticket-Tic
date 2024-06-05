@@ -19,28 +19,16 @@ class TicketsController extends Controller
      */
     public function index()
     {
-        /*$data=Tickets::select('id','created_at')->get()->groupBy(function($data){
-            return Carbon::parse($data->created_at)->format('M');
-        });
 
-        $months=[];
-        $monthCount=[];
-        foreach($data as $month=>$values){
-            $months[]=$month;
-            $monthCount[]=count($values);
-        }*/
-
-
-        /*$datos['tickets'] = DB::table('tickets')
+        $datos['tickets'] = DB::table('tickets')
             ->select('tickets.id','titulo','descripcion','ESTADO','prioridad','tickets.created_at','userid','name')
             ->leftjoin('users', 'users.id','=', 'tickets.userid')
             ->get();
-        */
+
         //dd($datos);
         //$datos['tickets'] = Tickets::all();
-        //return view('Tickets.index', $datos);
-        //return view('Tickets.charts',['data'=>$data,'months'=>$months,'monthCount'=>$monthCount]);
-        return view('admin.index');
+        return view('Tickets.index', $datos);
+
     }
 
     public function viewactivos(){
