@@ -2,7 +2,7 @@
 @section('content')
     <div class="container mt-4">
         <a href="{{ route('tickets.create') }}"class="btn btn-success">Generar Ticket</a>
-        <table class="table table-striped" id="example">
+        <table class="table table-striped responsive" id="example">
             <thead>
                 <tr>
                     <th scope="col">#</th>
