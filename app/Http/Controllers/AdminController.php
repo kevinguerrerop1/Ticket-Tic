@@ -23,6 +23,13 @@ class AdminController extends Controller
         $total = Tickets::all()->count();
 
 
+        //Tickets por estado
+        $abiertos= Tickets::where('ESTADO','Abierto')->count();
+        $enproceso= Tickets::where('ESTADO','En proceso')->count();
+        $cerrados= Tickets::where('ESTADO','Cerrado')->count();
+
+
+
 
         //Grafico total tickets
         $data=Tickets::select('id','created_at')
@@ -56,7 +63,7 @@ class AdminController extends Controller
             $tktCount[]=count($values);
         }
 
-        return view('Admin.index',['data'=>$data,'months'=>$months,'monthCount'=>$monthCount,'$tickets'=>$tickets,'funs'=>$funs,'tktCount'=>$tktCount,'total'=>$total] );
+        return view('Admin.index',['data'=>$data,'months'=>$months,'monthCount'=>$monthCount,'$tickets'=>$tickets,'funs'=>$funs,'tktCount'=>$tktCount,'total'=>$total,'cerrado'=>$cerrados] );
     }
 
     /**
