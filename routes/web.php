@@ -10,6 +10,8 @@ use App\Http\Controllers\DetalleTicketsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PermissionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('dashboard', AdminController::class);
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('permissions', PermissionController::class);
 });
 
 
