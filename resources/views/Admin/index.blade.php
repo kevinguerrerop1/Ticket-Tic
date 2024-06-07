@@ -79,6 +79,20 @@
                             </ul>
                         </li>
                         <!-- End Tickets Menu -->
+                        <!-- Tickets Menu -->
+                        <li class="nav-item"> <a href="#" class="nav-link"><i class="bi bi-people-fill"></i>
+                            <p>
+                                Usuarios
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"> <a href="{{ route('users.index') }}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Todos</p>
+                                    </a> </li>
+                            </ul>
+                        </li>
+                        <!-- End Tickets Menu -->
                     </ul>
                 </nav>
             </div>
