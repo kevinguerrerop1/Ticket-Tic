@@ -24,10 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $datos['tickets'] = DB::table('tickets')
-            ->select('tickets.id','titulo','descripcion','ESTADO','prioridad','tickets.created_at','userid','name')
-            ->leftjoin('users', 'users.id','=', 'tickets.userid')
-            ->get();
-        return view('Tickets.index', $datos);
+
+        return redirect('/dashboard');
     }
 }
