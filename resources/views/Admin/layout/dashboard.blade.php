@@ -86,6 +86,20 @@
                         </li>
                         <!-- End Tickets Menu -->
                         <!-- Tickets Menu -->
+                        <li class="nav-item"> <a href="#" class="nav-link"><i class="bi bi-toggle-on"></i>
+                            <p>
+                                Roles
+                                <i class="nav-arrow bi bi-chevron-right"></i>
+                            </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"> <a href="{{ route('roles.index') }}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                        <p>Roles</p>
+                                    </a> </li>
+                            </ul>
+                        </li>
+                        <!-- End Tickets Menu -->
+                        <!-- Tickets Menu -->
                         <li class="nav-item"> <a href="#" class="nav-link"><i class="bi bi-people-fill"></i>
                             <p>
                                 Usuarios

@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 
 
 /*
@@ -32,7 +33,7 @@ use App\Http\Controllers\PermissionController;
 Route::resource('/servicios', ServiciosController::class);
 
 //Tickets
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['role:Admin|Soporte']], function () {
     Route::resource('tickets', TicketsController::class);
     Route::get('tickets/{id}/asignar', [TicketsController::class,'asignar']);
     Route::get('/viewactivos', [TicketsController::class,'viewactivos']);
@@ -40,18 +41,24 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('tickets/{id}/cerrar', [TicketsController::class,'cerrar']);
 });
 
+
+
 //Detalles Ticket
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['role:Admin|Soporte']], function () {
     Route::resource('detalles', DetalleTicketsController::class);
     Route::get('detalles/{id}/datos', [DetalleTicketsController::class,'datos']);
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['role:Admin|Soporte']], function () {
     Route::resource('dashboard', AdminController::class);
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['role:Admin']], function () {
     Route::resource('perm', PermissionController::class);
+});
+
+Route::group(['middleware' => ['role:Admin']], function () {
+    Route::resource('roles', RoleController::class);
 });
 
 

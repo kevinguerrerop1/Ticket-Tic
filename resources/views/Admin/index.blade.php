@@ -82,7 +82,7 @@
                 <!-- Grafico lineas -->
             </div>
             <div class="col-lg-5 connectedSortable">
-                <div class="card ">
+                <div class="card" style="width: 36rem;">
                     <div class="card-header">
                         <h3 class="card-title">Tickets por Funcionario</h3>
                     </div>
