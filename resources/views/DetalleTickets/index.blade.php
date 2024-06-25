@@ -25,20 +25,37 @@
 
         <div class="mt-4">
             @foreach ($users as $user)
-            <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control" value="{{$ticket->estado}} a {{ $user->id }} {{ $user->name }}">
+                <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control" value="{{$ticket->estado}} a {{ $user->id }} {{ $user->name }}" disabled readonly>
             @endforeach
         </div>
         <div class="mt-4">
             <label for="">Prioridad</label>
-            <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control" value="{{$ticket->prioridad}}">
+            <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control" value="{{$ticket->prioridad}}" disabled readonly>
         </div>
+        @foreach ($dticket as $dt)
+            <div class="card mt-3" style="width: auto;">
+                <div class="card-header">
+                    <h5>{{ $dt->name }}</h5> <h5 class="float-end">{{ \Carbon\Carbon::parse($dt->created_at)->format('d-m-Y H:i') }}</h5>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                    <p>{{ $dt->ticketcomentario }}</p>
+                    </blockquote>
+                </div>
+            </div>
+        @endforeach
+        <!--
         <div class="mt-4">
             @foreach ($dticket as $dt)
                 <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
-                <label for="exampleFormControlTextarea1" class="form-label">Fecha: {{ \Carbon\Carbon::parse($dt->created_at)->format('d-m-Y H:i') }}</label>
+                <br>
+                <label for="exampleFormControlTextarea1" class="form-label" text-align="end">Fecha: {{ \Carbon\Carbon::parse($dt->created_at)->format('d-m-Y H:i') }}</label>
+                <br>
+                <label for="exampleFormControlTextarea1" class="form-label">Comentado por: {{ $dt->name }}</label>
                 <textarea class="form-control" id="" name="" rows="3" disabled readonly>{{ $dt->ticketcomentario }}</textarea>
             @endforeach
         </div>
+        -->
         <div class="mt-4">
             <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
             <textarea class="form-control" id="TICKETCOMENTARIO" name="TICKETCOMENTARIO" rows="3"></textarea>
@@ -46,6 +63,7 @@
         <div class="mt-4">
             <input type="submit" class="btn btn-success" value="Responder Ticket">
         </div>
+
     </form>
     <div class="mt-4">
         <a onclick="return confirm('Se desea Cerrar este Ticket?')" href="{{url('/tickets/'.$ticket->id.'/cerrar')}}" class="btn btn-danger">Cerrar</a>

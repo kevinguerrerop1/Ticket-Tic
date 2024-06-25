@@ -18,8 +18,7 @@ class DetalleTicketsController extends Controller
      */
     public function index(Tickets $id)
     {
-        $ticket = Tickets::findOrFail($id);
-        return view ('detalleTickets.index', compact('ticket'));
+
     }
 
     /**
@@ -44,7 +43,10 @@ class DetalleTicketsController extends Controller
         $dticket = new DetalleTickets();
         $dticket->ID_TICKET = $request->ID_TICKET;
         $dticket->TICKETCOMENTARIO = $request->TICKETCOMENTARIO;
+        $user=Auth::user()->id;
+        $dticket->id_user = $user;
         //dd($dticket);
+
         $dticket->save();
         return redirect('tickets');
     }
@@ -97,10 +99,16 @@ class DetalleTicketsController extends Controller
     public function datos(Tickets $id){
         $users = User::get()->where('id', $id->userid);
         $tickets = Tickets::get()->where('id', $id->id);
-        $dticket= DetalleTickets::get()->where('id_ticket', $id->id);
+        //$dticket= DetalleTickets::get()->where('id_ticket', $id->id);
 
+        $datos['dticket'] = DB::table('detalle_tickets')
+            ->select('id_ticket', 'TICKETCOMENTARIO','detalle_tickets.created_at', 'id_user','name')
+            ->join('users', 'users.id','=', 'detalle_tickets.id_user')
+            ->where('id_ticket', $id->id)
+            ->get();
+        //dd($datos,$dticket);
         //dd($tickets, $users, $dticket);
-        return view ('detalleTickets.index', compact('tickets', 'users', 'dticket'));
+        return view ('detalleTickets.index', compact('tickets', 'users'), $datos);
 
 
 

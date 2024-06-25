@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\DetalleTickets;
+
 use Carbon\Carbon;
 
 class TicketsController extends Controller
@@ -139,5 +141,43 @@ class TicketsController extends Controller
         $ticket->ESTADO = "Cerrado";
         $ticket->save();
         return redirect('tickets');
+    }
+
+    public function reabrir($id){
+        $ticket = Tickets::findOrFail($id);
+        $ticket->ESTADO = "Abierto";
+        $ticket->save();
+        return redirect('tickets');
+    }
+
+    public function viewticketadmin(){
+        $datos['tickets'] = DB::table('tickets')
+            ->select('tickets.id','titulo','descripcion','ESTADO','prioridad','tickets.created_at','userid','name')
+            ->leftjoin('users', 'users.id','=', 'tickets.userid')
+            ->get();
+
+        //dd($datos);
+        //$datos['tickets'] = Tickets::all();
+        return view('Admin.tickets.index', $datos);
+    }
+
+    public function detasigadmin(Tickets $id){
+        $users = User::all();
+        $tickets = Tickets::get()->where('id', $id->id);
+        return view ('Admin.tickets.asignar', compact('tickets', 'users'));
+    }
+
+    public function asigtckadmin(Request $request, $id){
+        $ticket=request()->except('_token','_method');
+        Tickets::where('id', $id)->update($ticket);
+        return redirect('tickets');
+
+/*
+        $ticket = new Tickets();
+        $ticket->ID_TICKET=$request->ID_TICKET;
+        $ticket->userid=$request->userid;
+        $ticket->ESTADO = "Asignado";
+        $ticket->update();
+        return redirect('tickets');*/
     }
 }

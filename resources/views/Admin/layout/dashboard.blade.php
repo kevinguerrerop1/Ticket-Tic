@@ -82,6 +82,9 @@
                                 <li class="nav-item"> <a href="{{('/tickets/viewactivos')}}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Activos</p>
                                     </a> </li>
+                                <li class="nav-item"> <a href="{{ ('/viewticketadmin') }}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                    <p>Asignar</p>
+                                </a> </li>
                             </ul>
                         </li>
                         <!-- End Tickets Menu -->

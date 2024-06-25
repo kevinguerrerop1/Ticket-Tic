@@ -42,6 +42,14 @@ Route::group(['middleware' => ['role:Admin|Soporte']], function () {
 });
 
 
+//Tickets Admin
+Route::group(['middleware' => ['role:Admin']], function () {
+    Route::get('/viewticketadmin',[TicketsController::class,'viewticketadmin']);
+    Route::get('tickets/{id}/detasigadmin', [TicketsController::class,'detasigadmin']);
+    Route::post('tickets/{id}/asigtckadmin',[TicketsController::class,'asigtckadmin']);
+});
+
+
 
 //Detalles Ticket
 Route::group(['middleware' => ['role:Admin|Soporte']], function () {
