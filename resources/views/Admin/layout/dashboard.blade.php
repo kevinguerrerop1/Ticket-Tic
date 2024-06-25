@@ -73,7 +73,7 @@
                             </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item"> <a href="{{ route('tickets.index') }}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="{{ ('/viewticketadmin') }}" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Todos</p>
                                     </a> </li>
                                 <li class="nav-item"> <a href="" class="nav-link"> <i class="nav-icon bi bi-circle"></i>
@@ -88,7 +88,7 @@
                             </ul>
                         </li>
                         <!-- End Tickets Menu -->
-                        <!-- Tickets Menu -->
+                        <!-- Roles Menu -->
                         <li class="nav-item"> <a href="#" class="nav-link"><i class="bi bi-toggle-on"></i>
                             <p>
                                 Roles
@@ -101,8 +101,8 @@
                                     </a> </li>
                             </ul>
                         </li>
-                        <!-- End Tickets Menu -->
-                        <!-- Tickets Menu -->
+                        <!-- End Roles Menu -->
+                        <!-- Usuarios Menu -->
                         <li class="nav-item"> <a href="#" class="nav-link"><i class="bi bi-people-fill"></i>
                             <p>
                                 Usuarios
@@ -115,7 +115,7 @@
                                     </a> </li>
                             </ul>
                         </li>
-                        <!-- End Tickets Menu -->
+                        <!-- End Usuarios Menu -->
                     </ul>
                 </nav>
             </div>

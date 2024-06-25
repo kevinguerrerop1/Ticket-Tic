@@ -172,6 +172,11 @@ class TicketsController extends Controller
         Tickets::where('id', $id)->update($ticket);
         return redirect('tickets');
 
+        $ticket->userid = $user;
+        $ticket->ESTADO = "Asignado";
+        $ticket->save();
+        return redirect('tickets');
+
 /*
         $ticket = new Tickets();
         $ticket->ID_TICKET=$request->ID_TICKET;

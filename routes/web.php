@@ -72,7 +72,7 @@ Route::group(['middleware' => ['role:Admin']], function () {
 
 //Entrega toner
 Route::group(['middleware' => ['role:Admin|Soporte|Secretaria']], function () {
-    Route::resource('roles', TonerController::class);
+    Route::resource('toner', TonerController::class);
 });
 
 
