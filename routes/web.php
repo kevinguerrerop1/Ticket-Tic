@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\TonerController;
 
 
 /*
@@ -68,6 +69,12 @@ Route::group(['middleware' => ['role:Admin']], function () {
 Route::group(['middleware' => ['role:Admin']], function () {
     Route::resource('roles', RoleController::class);
 });
+
+//Entrega toner
+Route::group(['middleware' => ['role:Admin|Soporte|Secretaria']], function () {
+    Route::resource('roles', TonerController::class);
+});
+
 
 
 //Usuarios
